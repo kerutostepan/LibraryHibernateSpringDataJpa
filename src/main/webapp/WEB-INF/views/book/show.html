@@ -5,12 +5,12 @@
     <title>Book</title>
 </head>
 <body>
-<p th:text="${books.getTitle() + ', ' + books.getAuthor() + ', ' + books.getYear()}">VALUE</p>
+<p th:text="${books.get().getTitle() + ', ' + books.get().getAuthor() + ', ' + books.get().getYear()}">VALUE</p>
 
 <div th:if="${owner}">
     <span>Book has: </span> <span th:text="${owner.getFullName()}">Person Name</span>
 
-    <form th:method="PATCH" th:action="@{/books/{id}/takeBookBack(id=${books.getId()})}">
+    <form th:method="PATCH" th:action="@{/books/{id}/takeBookBack(id=${books.get().getId()})}">
         <input type="submit" value="Release book"/>
     </form>
 </div>
@@ -18,7 +18,7 @@
 
 <div th:if="${people}">
     <span>It`s a free book, choose person for that book</span>
-    <form th:method="PATCH" th:action="@{/books/{id}/setPerson(id=${books.getId()})}">
+    <form th:method="PATCH" th:action="@{/books/{id}/setPerson(id=${books.get().getId()})}">
         <label for="person">Choose person</label>
         <select th:object="${person}" th:field="*{id}" id="person">
             <option th:each="person : ${people}" th:value="${person.getId()}" th:text="${person.getFullName()}">
@@ -28,11 +28,11 @@
     </form>
 </div>
 
-<form th:method="GET" th:action="@{/books/{id}/edit(id=${books.getId()})}">
+<form th:method="GET" th:action="@{/books/{id}/edit(id=${books.get().getId()})}">
     <input type="submit" value="Edit"/>
 </form>
 
-<form th:method="DELETE" th:action="@{/books/{id}(id=${books.getId()})}">
+<form th:method="DELETE" th:action="@{/books/{id}(id=${books.get().getId()})}">
     <input type="submit" value="Delete"/>
 </form>
 </body>

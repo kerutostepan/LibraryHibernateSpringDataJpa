@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<p th:text="${people.getFullName() + ', ' + people.getYearOfBirth()}">VALUE</p>
+<p th:text="${people.get().getFullName()+ ', ' + people.get().getYearOfBirth()}">VALUE</p>
 
 <div th:if="${books.isEmpty()}">
     <p>Person doesn't take any book</p>
@@ -23,11 +23,11 @@
     <br/>
 </div>
 
-<form th:method="GET" th:action="@{/people/{id}/edit(id=${people.getId()})}">
+<form th:method="GET" th:action="@{/people/{id}/edit(id=${people.get().getId()})}">
     <input type="submit" value="Edit"/>
 </form>
 
-<form th:method="DELETE" th:action="@{/people/{id}(id=${people.getId()})}">
+<form th:method="DELETE" th:action="@{/people/{id}(id=${people.get().getId()})}">
     <input type="submit" value="Delete"/>
 </form>
 </body>
